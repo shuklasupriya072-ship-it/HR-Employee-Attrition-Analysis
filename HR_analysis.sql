@@ -2,7 +2,7 @@
 SELECT COUNT(*) AS total_employees
 FROM WA_FnUseC_HREmployeeAttrition;
 
--- Query 2: Kitne log gaye
+-- Query 2: How many left the company
 SELECT COUNT(*) AS left_company
 FROM WA_FnUseC_HREmployeeAttrition
 WHERE Attrition = 'Yes';
@@ -56,14 +56,14 @@ ROUND(100.0 * SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) / COUNT(*), 1) 
 FROM WA_FnUseC_HREmployeeAttrition
 GROUP BY salary_bracket;
 
--- Query 9: Top performers jo gaye
+-- Query 9: Top performers who left
 SELECT Department, JobRole, MonthlyIncome, JobSatisfaction
 FROM WA_FnUseC_HREmployeeAttrition
 WHERE Attrition = 'Yes'
 AND JobSatisfaction = 1
 ORDER BY MonthlyIncome DESC;
 
--- Query 10: Departments jahan attrition 15% se zyada
+-- Query 10: Departments where attrition is more than 15%
 SELECT Department,
 COUNT(*) AS total,
 ROUND(100.0 * SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) / COUNT(*), 1) AS attrition_pct
